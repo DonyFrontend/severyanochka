@@ -4,8 +4,11 @@
     box-sizing: border-box;
 }
 
-body{background-color: antiquewhite;
-height: 200vb;
+body{
+    background-color: antiquewhite;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
 }
 
 
@@ -13,19 +16,11 @@ header{
     background-color: white;
     width: auto;
     height: 60px;
-    position: fixed;
+    position: sticky;
     top: 0;
     z-index: 1000;
-
 }
-.header{
-position: fixed;
-height: 72px;
-left: 0px;
-right: 0px;
-top: 0px;
 
-}
 
 .logo{
     display:flex;
@@ -87,10 +82,10 @@ top: 0px;
 .container{
     width: 1200px;
     margin: 40px auto;
-    position: fixed;
-    top:60px;
-    left: 80px;
+     padding-top: 40px;
+    flex: 1;
 }
+
 h1{
     font-size: 48px;
     margin-bottom: 35px;
@@ -421,29 +416,107 @@ hr{
     transform:scale(.96);
 }
 
-
-footer{
-      background-color: white;
-    width: auto;
-    height: 60px;
-    position: fixed;
-    top: 0;
-    z-index: 1000;
-}
-
 .footer{
-    position: fixed;
-    height: 72px;
-    left: 0px;
-    right: 0px;
-    top: 760px;
-    position: sticky;
-    bottom: 0;
-
+    width: 100%;
+    background-color: #fff9e8;
+    margin-top: 80px;
+    padding: 25px 0 15px;
+    position: relative;
 }
 
-.footer-logo img {
-  width: 40px;
-  height: 40px;
-  margin: 10px;
+.footer-container{
+    width: 1200px;
+    margin: 0 auto;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 25px;
+}
+
+/* Логотип */
+
+.footer-logo{
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.footer-logo img{
+    width: 50px;
+    height: 50px;
+    object-fit: contain;
+}
+
+.footer-logo span{
+    font-size: 13px;
+    font-weight: bold;
+    color: #414141;
+}
+
+/* Меню */
+
+.footer-menu{
+    display: flex;
+    align-items: center;
+    gap: 25px;
+}
+
+.footer-menu a{
+    text-decoration: none;
+    color: #414141;
+    font-size: 13px;
+}
+
+.footer-menu a:hover{
+    color: #70C05B;
+}
+
+/* Социальные сети */
+
+.footer-social{
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.footer-social a{
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 16px;
+}
+
+.instagram{
+    color: #E4405F;
+}
+
+.vk{
+    color: #2787F5;
+}
+
+.facebook{
+    color: #1877F2;
+}
+
+.ok{
+    color: #EE8208;
+}
+
+/* Телефон */
+
+.footer-phone{
+    font-size: 14px;
+    color: #414141;
+    white-space: nowrap;
+}
+
+/* Нижняя надпись */
+
+.footer-bottom{
+    width: 1200px;
+    margin: 15px auto 0;
+
+    text-align: right;
+    font-size: 11px;
+    color: #777;
 }
