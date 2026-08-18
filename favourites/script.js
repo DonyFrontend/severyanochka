@@ -221,3 +221,4 @@ document.getElementById("pagination").addEventListener("click", (e) => {
 });
 
 renderGrid();
+alert("Ты гей!")
