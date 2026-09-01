@@ -5,6 +5,14 @@ const searchInput = document.getElementById("searchInput");
 const favCount = document.getElementById("favCount");
 const cartCount = document.getElementById("cartCount");
 
+const favourites = JSON.parse(localStorage.getItem("favourites"));
+console.log(favourites);
+
+const fav_products = products.filter((item) =>
+  favourites.find((second_item) => second_item === item.id),
+);
+console.log(fav_products);
+
 function formatPrice(price) {
   return `${price.toFixed(2).replace(".", ",")} ₽`;
 }
@@ -55,12 +63,14 @@ function makeProductCard(product) {
 function renderProducts() {
   const searchText = searchInput ? searchInput.value.trim().toLowerCase() : "";
   const favoriteProducts = products.filter((product) => {
-    return product.isFavorite && product.name.toLowerCase().includes(searchText);
+    return (
+      product.isFavorite && product.name.toLowerCase().includes(searchText)
+    );
   });
 
   productGrid.innerHTML = "";
 
-  favoriteProducts.forEach((product) => {
+  fav_products.forEach((product) => {
     productGrid.innerHTML += makeProductCard(product);
   });
 
