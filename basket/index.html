@@ -1,97 +1,38 @@
 <!doctype html>
-<html lang="en">
+<html lang="ru">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>Северяночка — Корзина</title>
     <link rel="stylesheet" href="./style.css" />
   </head>
   <body>
-    <div class="container">
-      <h1>Корзина <span>3</span></h1>
+    <main class="container">
+      <div class="breadcrumbs">
+        <a href="../index.html">Главная</a>
+        <span>/</span>
+        <span>Корзина</span>
+      </div>
+
+      <h1>Корзина <span id="cart-count">0</span></h1>
 
       <div class="cart">
-        <div class="cart-left">
+        <section class="cart-left">
           <div class="top-panel">
             <label>
               <input type="checkbox" />
               Выделить всё
             </label>
 
-            <a href="#">Удалить выбранные</a>
+            <button class="remove-selected" type="button">
+              Удалить выбранные
+            </button>
           </div>
 
-          <div class="product">
-            <img src="image.png" alt="" />
+          <div id="cart-list"></div>
+        </section>
 
-            <div class="info">
-              <h3>Майонез ПРОВАНСАЛЬ</h3>
-
-              <p>820 г</p>
-            </div>
-
-            <div class="count">
-              <button>-</button>
-
-              <span>2</span>
-
-              <button>+</button>
-            </div>
-
-            <div class="price">
-              <h2>89 ₽</h2>
-
-              <del>99 ₽</del>
-            </div>
-          </div>
-
-          <div class="product">
-            <img src="image.png" alt="" />
-
-            <div class="info">
-              <h3>Комбайн КЗС - 1218</h3>
-
-              <p>930 мл</p>
-            </div>
-            <div class="count">
-              <button>-</button>
-              <span>1</span>
-              <button>+</button>
-            </div>
-            <div class="price">
-              <h2>79 ₽</h2>
-              <del>95 ₽</del>
-            </div>
-          </div>
-          <div class="product">
-            <img src="./images/image.png" alt="" />
-            <div class="info">
-              <h3>Колбаса Докторская</h3>
-              <p>500 г</p>
-            </div>
-            <div class="count">
-              <button>-</button>
-              <span>1</span>
-              <button>+</button>
-            </div>
-            <div class="price">
-              <h2>239 ₽</h2>
-              <del>259 ₽</del>
-            </div>
-          </div>
-          <div class="product out-stock">
-            <img src="image.png" alt="" />
-
-            <div class="info">
-              <h3>Колбаса ЭКО 220 г «ДЕСНА-ПОЛЕСЬЕ 65%»</h3>
-
-              <p>800 г</p>
-            </div>
-
-            <div class="status">Нет в наличии</div>
-          </div>
-        </div>
-        <div class="cart-right">
+        <aside class="cart-right">
           <div class="bonus">
             <div class="bonus-top">
               <label class="switch">
@@ -102,29 +43,26 @@
             </div>
             <p>На карте накоплено 200 ₽</p>
           </div>
+
           <h3>Ваш заказ</h3>
           <div class="row">
-            <span>3 товара</span>
-            <span>407 ₽</span>
+            <span id="order-count">0 товаров</span>
+            <span id="order-sum">0 ₽</span>
           </div>
           <div class="row">
             <span>Скидка</span>
-            <span class="sale">−46 ₽</span>
+            <span class="sale" id="order-sale">0 ₽</span>
           </div>
           <hr />
           <div class="total">
             <span>Итого</span>
-            <strong>361 ₽</strong>
+            <strong id="order-total">0 ₽</strong>
           </div>
-          <button class="order">Оформить заказ</button>
-        </div>
+          <button class="order" type="button">Оформить заказ</button>
+        </aside>
       </div>
-    </div>
-    <footer class="footer">
-      <div class="footer-logo">
-        <img src="" alt="" />
-      </div>
-    </footer>
-    <script src="./script.js"></script>
+    </main>
+
+    <script type="module" src="./script.js"></script>
   </body>
 </html>

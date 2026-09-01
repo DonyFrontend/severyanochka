@@ -1,78 +1,76 @@
-const products = [
-    {
-        name: "Майонез ПРОВАНСАЛЬ",
-        weight: "820 г",
-        price: "89 ₽",
-        oldPrice: "99 ₽",
-        count: 2,
-        image: "image.png",
-        stock: true
-    },
-    {
-        name: "Молоко Простоквашино",
-        weight: "930 мл",
-        price: "79 ₽",
-        oldPrice: "95 ₽",
-        count: 1,
-        image: "image.png",
-        stock: true
-    },
-    {
-        name: "Колбаса Докторская",
-        weight: "500 г",
-        price: "239 ₽",
-        oldPrice: "259 ₽",
-        count: 1,
-        image: "image.png",
-        stock: true
-    },
-    {
-        name: "Колбаса ЭКО 220 г «ДЕСНА-ПОЛЕСЬЕ 65%»",
-        weight: "800 г",
-        price: "",
-        oldPrice: "",
-        count: 0,
-        image: "image.png",
-        stock: false
-    }
-];
+import { products } from "../products.js";
 
 const cartList = document.getElementById("cart-list");
+const cartCount = document.getElementById("cart-count");
+const orderCount = document.getElementById("order-count");
+const orderSum = document.getElementById("order-sum");
+const orderSale = document.getElementById("order-sale");
+const orderTotal = document.getElementById("order-total");
 
-products.forEach(product => {
+function formatPrice(price) {
+  return `${price.toFixed(2).replace(".", ",")} ₽`;
+}
 
-    const card = document.createElement("div");
+function getProductWord(count) {
+  if (count === 1) {
+    return "товар";
+  }
 
-    card.className = product.stock ? "product" : "product out-stock";
+  if (count >= 2 && count <= 4) {
+    return "товара";
+  }
 
-    card.innerHTML = `
-        <img src="${product.image}" alt="">
+  return "товаров";
+}
 
-        <div class="info">
-            <h3>${product.name}</h3>
-            <p>${product.weight}</p>
-        </div>
+function makeCartProduct(product) {
+  return `
+    <article class="product">
+      <label class="product-check">
+        <input type="checkbox">
+      </label>
+      <div class="product__image">${product.image}</div>
+      <div class="info">
+        <h3>${product.name}</h3>
+        <p>${product.weight}</p>
+      </div>
+      <div class="count">
+        <button type="button">-</button>
+        <span>${product.basketCount}</span>
+        <button type="button">+</button>
+      </div>
+      <div class="price">
+        <h2>${formatPrice(product.price * product.basketCount)}</h2>
+        ${product.oldPrice ? `<del>${formatPrice(product.oldPrice * product.basketCount)}</del>` : ""}
+      </div>
+      <button class="remove-product" type="button">Удалить</button>
+    </article>
+  `;
+}
 
-        ${
-            product.stock
-            ?
-            `
-            <div class="count">
-                <button>-</button>
-                <span>${product.count}</span>
-                <button>+</button>
-            </div>
+function renderCart() {
+  const cartProducts = products.filter((product) => {
+    return product.basketCount > 0;
+  });
 
-            <div class="price">
-                <h2>${product.price}</h2>
-                <del>${product.oldPrice}</del>
-            </div>
-            `
-            :
-            `<div class="status">Нет в наличии</div>`
-        }
-    `;
+  let count = 0;
+  let sum = 0;
+  let oldSum = 0;
 
-    cartList.appendChild(card);
+  cartList.innerHTML = "";
 
-});
+  cartProducts.forEach((product) => {
+    count += product.basketCount;
+    sum += product.price * product.basketCount;
+    oldSum += (product.oldPrice || product.price) * product.basketCount;
+    cartList.innerHTML += makeCartProduct(product);
+  });
+
+  cartCount.textContent = count;
+  orderCount.textContent = `${count} ${getProductWord(count)}`;
+  orderSum.textContent = formatPrice(oldSum);
+  orderSale.textContent = `-${formatPrice(oldSum - sum)}`;
+  orderTotal.textContent = formatPrice(sum);
+}
+
+renderCart();

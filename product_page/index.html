@@ -1,417 +1,133 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ru">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Северяночка — Карточка товара</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="./style.css">
-</head>
-<body>
-
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body>
     <header class="header">
-        <div class="header-container">
-            <div class="logo"><span>😊</span> СЕВЕРЯНОЧКА</div>
-            <div class="search-bar">
-                <input type="text" placeholder="Найти товар">
-                <button class="search-btn"><i class="fa-solid fa-magnifying-glass"></i></button>
-            </div>
-            <div class="header-actions">
-                <div class="action-item"><i class="fa-regular fa-heart"></i><br>Избранное</div>
-                <div class="action-item"><i class="fa-solid fa-basket-shopping"></i><br>Корзина</div>
-            </div>
-        </div>
+      <div class="header__inner">
+        <a class="logo" href="../index.html">
+          <span class="logo__mark">С</span>
+          <span class="logo__text">СЕВЕРЯНОЧКА</span>
+        </a>
+
+        <form class="search" onsubmit="return false;">
+          <input id="searchInput" type="search" placeholder="Найти товар" />
+          <button type="submit">Найти</button>
+        </form>
+
+        <nav class="header__nav">
+          <a href="../index.html">
+            Избранное
+            <span id="favCount">0</span>
+          </a>
+          <a href="../basket/index.html">
+            Корзина
+            <span id="cartCount">0</span>
+          </a>
+        </nav>
+      </div>
     </header>
 
     <main class="main-container">
-        <h1 class="product-title">Масло ПРОСТОКВАШИНО сливочное в/с 82% фольга без змж, Россия, 180 г</h1>
-        
+      <div class="breadcrumbs">
+        <a href="../index.html">Главная</a>
+        <span>/</span>
+        <span id="breadcrumbProduct">Товар</span>
+      </div>
+
+      <section class="product-head">
+        <h1 id="product-title"></h1>
         <div class="product-meta">
-            <span>арт. 371431</span>
-            <div><span class="stars">★★☆☆☆</span> <u>3 отзыва</u></div>
-            <div class="share-fav">
-                <span><i class="fa-solid fa-share-nodes"></i> Поделиться</span>
-                <span><i class="fa-regular fa-heart"></i> В избранное</span>
-            </div>
+          <span id="product-article"></span>
+          <span class="stars" id="product-rating"></span>
+          <button class="favorite-action" id="main-favorite-btn" type="button">
+            В избранное
+          </button>
+        </div>
+      </section>
+
+      <section class="product-grid">
+        <div class="gallery-container">
+          <div class="thumbnails" id="thumbs"></div>
+          <div class="main-image-wrapper">
+            <span class="badge-discount" id="badge-discount"></span>
+            <div class="main-image" id="main-img"></div>
+          </div>
         </div>
 
-        <div class="product-grid">
-            <div class="gallery-container">
-                <div class="thumbnails" id="thumbs"></div>
-                <div class="main-image-wrapper">
-                    <span class="badge-discount">-50%</span>
-                    <img id="main-img" src="" alt="Товар">
-                </div>
+        <div class="details-container">
+          <div class="price-section">
+            <div>
+              <span class="old-price" id="old-price"></span>
+              <span class="price-label">Обычная цена</span>
             </div>
-
-            <div class="details-container">
-                <div class="price-section">
-                    <div>
-                        <span class="old-price">192,69₽</span>
-                        <span class="old-price-label">Обычная цена</span>
-                    </div>
-                    <div>
-                        <span class="current-price">108,99₽</span>
-                        <span class="card-label">С картой Северяночки <i class="fa-solid fa-circle-info"></i></span>
-                    </div>
-                </div>
-
-                <button class="add-to-cart-btn"><i class="fa-solid fa-cart-shopping"></i> В корзину</button>
-                <div class="bonus-info"><span class="green-dot">🟢</span> Вы получаете <strong>10 бонусов</strong></div>
-                <div class="price-alert"><i class="fa-regular fa-bell-slash"></i> Уведомить о снижении цены</div>
-
-                <div class="specs">
-                    <div class="spec-row"><span class="spec-label">Бренд</span><span>ПРОСТОКВАШИНО</span></div>
-                    <div class="spec-row"><span class="spec-label">Страна производитель</span><span>Россия</span></div>
-                    <div class="spec-row"><span class="spec-label">Упаковка</span><span>180 г</span></div>
-                </div>
+            <div>
+              <span class="current-price" id="current-price"></span>
+              <span class="price-label" id="price-note"></span>
             </div>
+          </div>
 
-            <div class="similar-container">
-                <h3>Похожие</h3>
-                <div id="similar-list"></div>
+          <button class="add-to-cart-btn" id="add-to-cart-btn" type="button">
+            В корзину
+          </button>
+
+          <div class="bonus-info">Вы получаете <strong>10 бонусов</strong></div>
+          <button class="price-alert" type="button">Уведомить о снижении цены</button>
+
+          <div class="specs">
+            <div class="spec-row">
+              <span class="spec-label">Бренд</span>
+              <span id="product-brand"></span>
             </div>
-        </div>
-        <h2 class="class">С этим товаром покупают</h2>
-        <section class="products">
-
-    <div class="product-container">
-      
-        <!-- Карточка 1 -->
-        <div class="card">
-
-            <div class="favorite">
-                <i class="fa-regular fa-heart"></i>
+            <div class="spec-row">
+              <span class="spec-label">Страна производитель</span>
+              <span id="product-country"></span>
             </div>
-
-            <img src="https://vkuster.ru/static/content/products/1153/photos/main_full.jpg?1667479435" alt="Колбаса">
-
-            <h3>77,99 ₽</h3>
-
-            <p>
-                Комбайн КЗС-1218
-                «ДЕСНА-ПОЛЕСЬЕ GS12»
-          
-            </p>
-
-            <div class="stars">
-                <i class="fas fa-star active"></i>
-                <i class="fas fa-star active"></i>
-                <i class="fas fa-star active"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
+            <div class="spec-row">
+              <span class="spec-label">Упаковка</span>
+              <span id="product-packing"></span>
             </div>
-
-            <button class="cart-btn">
-                В корзину
-            </button>
-
+          </div>
         </div>
 
-        <!-- Карточка 2 -->
-        <div class="card">
+        <aside class="similar-container">
+          <h2>Похожие</h2>
+          <div id="similar-list"></div>
+        </aside>
+      </section>
 
-            <div class="favorite">
-                <i class="fa-regular fa-heart"></i>
-            </div>
+      <section class="product-section">
+        <h2>С этим товаром покупают</h2>
+        <div class="product-container" id="cross-sell-list"></div>
+      </section>
 
-            <img src="https://images-foodtech.magnit.ru/6VioBrAu_MH06GlNNRwIDoJ2sM3RW7yG-iYc2XiaLuU/rs:fit:1600:1600/plain/s3://img-dostavka/catalog/pim/goods/1000275844/image/59013ebdff1c285d6e062c1762f27319.jpeg@webp" alt="Колбаса">
-
-            <h3>44,50 ₽</h3>
-
-            <p>
-                Колбаса сырокопченая
-                МЯСНАЯ ИСТОРИЯ Сальчичон и Тоскан...
-            </p>
-
-            <div class="stars">
-                <i class="fas fa-star active"></i>
-                <i class="fas fa-star active"></i>
-                <i class="fas fa-star active"></i>
-                <i class="fas fa-star active"></i>
-                <i class="fas fa-star active"></i>
-            </div>
-
-            <button class="cart-btn orange">
-                В корзину
-            </button>
-
+      <section class="product-section">
+        <div class="section-top">
+          <h2>Акции</h2>
+          <a href="../index.html">Все акции</a>
         </div>
+        <div class="product-container" id="sale-list"></div>
+      </section>
+    </main>
 
-        <!-- Карточка 3 -->
-
-        <div class="card">
-
-            <div class="favorite">
-                <i class="fa-regular fa-heart"></i>
-            </div>
-
-            <img src="https://cdn-irec.r-99.com/sites/default/files/imagecache/300o/product-images/268095/snKDadux33OTpI2UfCiWFw.jpeg" alt="Колбаса">
-
-
-            <h3>159,99 ₽</h3>
-
-            <p>
-                Комбайн КЗС-1218
-                «ДЕСНА-ПОЛЕСЬЕ GS12»
-            </p>
-
-            <div class="stars">
-                <i class="fas fa-star active"></i>
-                <i class="fas fa-star active"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-            </div>
-
-            <button class="cart-btn">
-                В корзину
-            </button>
-
-        </div>
-
-        <!-- Карточка 4 -->
-
-        <div class="card">
-
-            <div class="favorite">
-                <i class="fa-regular fa-heart"></i>
-            </div>
-
-            <img src="https://kirmarket.ru/upload/iblock/844/8y7y7m8r7qafs2n0gh1a2fhfvh188gy0.jpg" alt="Молоко">
-
-            <h3>49,39 ₽</h3>
-
-            <p>
-                Комбайн КЗС-1218
-                «ДЕСНА-ПОЛЕСЬЕ GS12»
-            </p>
-
-            <div class="stars">
-                <i class="fas fa-star active"></i>
-                <i class="fas fa-star active"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-            </div>
-
-            <button class="cart-btn">
-                В корзину
-            </button>
-
-        </div>
-
-    </div>
-
-</section>
-<section class="sale">
-  <div class="container">
-
-    <div class="sale-top">
-      <h2>Акции</h2>
-
-      <a href="#" class="all-sale">
-        Все акции →
+    <footer class="footer">
+      <a class="logo" href="../index.html">
+        <span class="logo__mark">С</span>
+        <span class="logo__text">СЕВЕРЯНОЧКА</span>
       </a>
-    </div>
+      <nav>
+        <a href="../about_company/index.html">О компании</a>
+        <a href="#">Контакты</a>
+        <a href="#">Вакансии</a>
+        <a href="#">Статьи</a>
+      </nav>
+      <a href="tel:88007773333">8 800 777 33 33</a>
+    </footer>
 
-    <div class="products">
-
-      <!-- Карточка 1 -->
-      <div class="product-card">
-
-        <span class="discount">-50%</span>
-
-        <button class="favorite">♡</button>
-
-        <div class="product-image">
-          <img src="https://imageproxy.wolt.com/assets/69d69c6983e17ddbede88b05" alt="Товар">
-        </div>
-
-        <div class="price">
-            
-          <div class="new-price">
-            44,50 ₽
-            <p>с картой</p>
-          </div>
-
-          <div class="old-price">
-            50,50 ₽
-              <p>Обычная</p>
-          </div>
-
-        </div>
-
-        <p class="card-title">
-          Г/Ц Блинчики с мясом, весовые
-          Россия
-        </p>
-
-        <div class="rating">
-          ★★★★★
-        </div>
-
-        <button class="cart-btn">
-          В корзину
-        </button>
-
-      </div>
-
-      <!-- Карточка 2 -->
-
-      <div class="product-card">
-
-        <span class="discount">-50%</span>
-
-        <button class="favorite">♡</button>
-
-        <div class="product-image">
-          <img src="https://kirmarket.ru/upload/iblock/844/8y7y7m8r7qafs2n0gh1a2fhfvh188gy0.jpg"" alt="Товар">
-        </div>
-
-        <div class="price">
-           
-          <div class="new-price">
-            44,50 ₽
-              <p>с картой</p>
-          </div>
-
-          <div class="old-price">
-            50,50 ₽
-              <p>Обычная</p>
-          </div>
-
-        </div>
-
-        <p class="card-title">
-          Молоко пастеризованное питьевое отборное..
-        </p>
-
-        <div class="rating">
-          ★★★★★
-        </div>
-
-        <button class="cart-btn">
-          В корзину
-        </button>
-
-      </div>
-
-      <!-- Карточка 3 -->
-
-      <div class="product-card">
-
-        <span class="discount">-50%</span>
-
-        <button class="favorite">♡</button>
-
-        <div class="product-image">
-          <img src="https://images-foodtech.magnit.ru/6VioBrAu_MH06GlNNRwIDoJ2sM3RW7yG-iYc2XiaLuU/rs:fit:1600:1600/plain/s3://img-dostavka/catalog/pim/goods/1000275844/image/59013ebdff1c285d6e062c1762f27319.jpeg@webp" alt="Колбаса">
-
-   </div>
-
-        <div class="price">
-          
-          <div class="new-price">
-            44,50 ₽
-            <p>с картой</p>
-          </div>
-
-          <div class="old-price">
-            50,50₽
-            <p>Обычная</p>
-            </div>
-
-        </div>
-
-        <p class="card-title">
-          Колбаса сырокопчёная «Мясная история» 
-        </p>
-
-        <div class="rating">
-          ★★★★★
-        </div>
-
-        <button class="cart-btn orange">
-          В корзину
-        </button>
-
-      </div>
-
-      <!-- Карточка 4 -->
-
-      <div class="product-card">
-
-        <span class="discount">-50%</span>
-
-        <button class="favorite">♡</button>
-
-        <div class="product-image">
-          <img src="https://cdn-irec.r-99.com/sites/default/files/imagecache/300o/product-images/268095/snKDadux33OTpI2UfCiWFw.jpeg" alt="Товар">
-        </div>
-
-        <div class="price">
-
-          <div class="new-price">
-            44,50 ₽
-            <p>с картой</p>
-          </div>
-
-          <div class="old-price">
-            50,50 ₽
-            <p>Обычная</p>
-          </div>
-
-        </div>
-
-        <p class="card-title">
-          Сосиски варёные Молочные с сыром
-        </p>
-
-        <div class="rating">
-          ★★★★★
-        </div>
-
-     
-        <button class="cart-btn  ">
-        В корзину</button>
-
-      </div>
-
-    </div>
-
-  </div>
-</section>
- <header class="site-nav">
-    
-    <div class="nav-left">
-      <div class="logo">😊</div>
-      <ul class="nav-links">
-        <li><a href="#">О компании</a></li>
-        <li><a href="#">Контакты</a></li>
-        <li><a href="#">Вакансии</a></li>
-        <li><a href="#">Статьи</a></li>
-        <li><a href="#">Политика обработки персональных данных</a></li>
-      </ul>
-    </div>
-
-    <div class="nav-right">
-      <div class="social-links">
-        <a href="#">VK</a>
-        <a href="#">f</a>
-        <a href="#">OK</a>
-      </div>
-
-      <div class="contact-block">
-        <a href="tel:88007770000" class="phone">📞 8 800 777</a>
-        <span class="designer-credit">ДИЗАЙН ZASOVSKIY</span>
-      </div>
-    </div>
-
-  </header>
-
-
-</main>
- <script src="./script.js"></script>
-</body>
+    <script type="module" src="./script.js"></script>
+  </body>
 </html>

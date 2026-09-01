@@ -9,7 +9,7 @@
   <body>
     <main class="page">
       <div class="breadcrumbs">
-        <a href="#">Главная</a>
+        <a href="../index.html">Главная</a>
         <svg viewBox="0 0 24 24" width="14" height="14">
           <path
             d="M9 6l6 6-6 6"
@@ -26,12 +26,12 @@
       <section class="favorites">
         <h1 class="favorites__title">Избранное</h1>
 
-        <div class="filters" id="filters">
-          <span class="chip chip--price" id="priceChip">
+        <div class="filters">
+          <span class="chip chip--price">
             Цена от 99 до 2599
             <button
               class="chip__x"
-              data-remove="price"
+              type="button"
               aria-label="Убрать фильтр по цене"
             >
               <svg viewBox="0 0 24 24" width="12" height="12">
@@ -44,7 +44,7 @@
               </svg>
             </button>
           </span>
-          <button class="chip chip--clear" id="clearFilters">
+          <button class="chip chip--clear" type="button">
             Очистить
             <svg viewBox="0 0 24 24" width="12" height="12">
               <path
@@ -61,7 +61,7 @@
           <!-- product cards injected by JS -->
         </div>
 
-        <nav class="pagination" id="pagination" aria-label="Страницы">
+        <nav class="pagination" aria-label="Страницы">
           <button
             class="page-btn page-btn--edge"
             data-page="prev"
@@ -136,7 +136,7 @@
         </a>
 
         <nav class="footer__nav">
-          <a href="#">О компании</a>
+          <a href="../about_company/index.html">О компании</a>
           <a href="#">Контакты</a>
           <a href="#">Вакансии</a>
           <a href="#">Статьи</a>
@@ -250,8 +250,6 @@
       </div>
     </footer>
 
-    <div class="toast" id="toast"></div>
-
-    <script src="script.js"></script>
+    <script type="module" src="script.js"></script>
   </body>
 </html>
